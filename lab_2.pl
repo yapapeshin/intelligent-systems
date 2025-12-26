@@ -1,16 +1,13 @@
 % member/2 - проверка принадлежности элемента
-% (часто встроен)
 member(X, [X|_]).
 member(X, [_|Tail]) :- member(X, Tail).
 
 % append/3 - конкатенация списков
-% (часто встроен)
 append([], List, List).
 append([Head|Tail], List, [Head|Rest]) :-
     append(Tail, List, Rest).
 
 % length/2 - длина списка
-% (часто встроен)
 length([], 0).
 length([_|Tail], N) :-
     length(Tail, N1),

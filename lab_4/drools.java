@@ -16,7 +16,7 @@ public class Disease {
     private String treatment;
     private int confidence;
     
-    // конструкторы, геттеры, сеттеры
+
 }
 
 // Файл правил: tomato-diagnosis.drl
@@ -113,12 +113,10 @@ end
 public class TomatoDiagnosisSystem {
     public static void main(String[] args) {
         try {
-            // Инициализация Drools
             KieServices ks = KieServices.Factory.get();
             KieContainer kc = ks.getKieClasspathContainer();
             KieSession ksession = kc.newKieSession("TomatoDiagnosisSession");
             
-            // Ввод симптомов от пользователя
             Scanner scanner = new Scanner(System.in);
             
             System.out.println("======== TOMATO DISEASE DIAGNOSIS ========");
@@ -129,14 +127,12 @@ public class TomatoDiagnosisSystem {
             Symptom wilting = new Symptom("wilting", askSymptom("Plant wilting?", scanner));
             Symptom curlingLeaves = new Symptom("curlingLeaves", askSymptom("Leaves curling?", scanner));
             
-            // Добавление фактов в рабочую память
             ksession.insert(yellowLeaves);
             ksession.insert(brownSpots);
             ksession.insert(whiteMold);
             ksession.insert(wilting);
             ksession.insert(curlingLeaves);
-            
-            // Запуск правил
+
             ksession.fireAllRules();
             ksession.dispose();
             scanner.close();
